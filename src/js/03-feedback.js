@@ -13,7 +13,7 @@ formEl.addEventListener('input', throttle(OnFormInput, 500)); // вешаю со
 formEl.addEventListener('submit', onFormSubmit); // вешаю событие на сабмит
 
 const STORAGE_KEY = 'feedback-msg';
-const formFeedbackData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+let formFeedbackData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
 fillForm(); // заполняю форму из local storage
 
@@ -46,6 +46,7 @@ function onFormSubmit(evt) {
 
     form.reset();
     localStorage.removeItem(STORAGE_KEY);
+    formFeedbackData = {};
     return;
   } else {
     alert('Все поля должны быть заполнены!');
